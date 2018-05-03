@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <TextField fx:id="idField" layoutX="64.0" layoutY="237.0" onAction="#enterID" promptText="Paste ID Here" />
+      <Label layoutX="64.0" layoutY="213.0" prefHeight="20.0" prefWidth="112.0" text="Enter Player ID:" textFill="#ed0202">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button layoutX="274.0" layoutY="237.0" mnemonicParsing="false" onAction="#enterID" text="Display Info" />
+      <Label fx:id="match0" layoutX="70.0" layoutY="328.79998779296875" prefHeight="25.0" prefWidth="450.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="match1" layoutX="70.0" layoutY="371.20001220703125" prefHeight="25.0" prefWidth="450.0" />
+      <Label fx:id="match2" layoutX="70.0" layoutY="413.6000061035156" prefHeight="25.0" prefWidth="450.0" />
+      <Label fx:id="match3" layoutX="70.0" layoutY="456.0" prefHeight="25.0" prefWidth="450.0" />
+      <Label fx:id="match4" layoutX="70.0" layoutY="499.20001220703125" prefHeight="25.0" prefWidth="450.0" />
+      <Label fx:id="match5" layoutX="70.0" layoutY="541.5999755859375" prefHeight="25.0" prefWidth="450.0" />
+      <Label fx:id="match6" layoutX="70.0" layoutY="584.0" prefHeight="25.0" prefWidth="450.0" />
+      <Label fx:id="match7" layoutX="70.0" layoutY="626.4000244140625" prefHeight="25.0" prefWidth="450.0" />
+      <Label fx:id="match8" layoutX="70.0" layoutY="669.5999755859375" prefHeight="25.0" prefWidth="450.0" />
+      <Label fx:id="match9" layoutX="70.0" layoutY="712.0" prefHeight="25.0" prefWidth="450.0" />
+      <Label layoutX="36.0" layoutY="241.0" text="1." textFill="#ed0202" />
+      <Label fx:id="displayUser" layoutX="68.0" layoutY="278.0" prefHeight="35.0" prefWidth="412.0" textFill="#160db7">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="matchField" layoutX="64.0" layoutY="799.0" onAction="#selectMatch" prefHeight="25.0" prefWidth="43.0" promptText="1-10" />
+      <Label layoutX="36.0" layoutY="803.0" text="2." textFill="#ed0202" />
+      <Label layoutX="64.0" layoutY="737.0" prefHeight="57.0" prefWidth="355.0" text="Enter the number of the match you want to select" textFill="#ed0202">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="52.0" layoutY="154.0" prefHeight="17.0" prefWidth="313.0" text="Copy and paste the player ID from a profile." />
+      <Label layoutX="52.0" layoutY="171.0" prefHeight="17.0" prefWidth="365.0" text="Example: https://www.dotabuff.com/players/&lt;PLAYER ID&gt;" />
+      <Label layoutX="52.0" layoutY="137.0" prefHeight="17.0" prefWidth="313.0" text="Search for a player on dotabuff.com." />
+      <Button layoutX="150.0" layoutY="799.0" mnemonicParsing="false" onAction="#selectMatch" text="Enter" />
+   </children>
+</Pane>
