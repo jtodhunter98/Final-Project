@@ -16,11 +16,11 @@ public class Main extends Application
 		{
 			//set up window
 			Parent root = FXMLLoader.load(getClass().getResource("/application/Main.fxml"));
-			Scene scene = new Scene(root,1200,900);
+			Scene scene = new Scene(root,1500,900);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Dota Stats");
 			primaryStage.setScene(scene);
-			primaryStage.show();	
+			primaryStage.show();
 		} 
 		catch(Exception e)
 		{
