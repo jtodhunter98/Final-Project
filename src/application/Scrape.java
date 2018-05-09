@@ -90,9 +90,9 @@ public class Scrape
 		return matchIDs;
 	}
 	
-	public String[][] radiantArray(ArrayList<Long> matchList, String matchURL) throws IOException
+	public String[][] radiantArray(String match_url) throws IOException
 	{
-		String url = matchURL;
+		String url = match_url;
 		Document matchInfo = Jsoup.connect(url).get();
 		String [][] radiant = new String [5][10];
 		
@@ -281,7 +281,8 @@ public class Scrape
 			Element netElement = collectNet.get(tag + 3);
 			String net = netElement.toString();
 			int find1 = net.indexOf(">",50) + 1;
-			int find2 = net.indexOf("<",50);			
+			int find2 = net.indexOf("<",50);
+			
 			if(find2 == 104)
 			{
 				find1 = net.indexOf(">", 105) + 1;
@@ -427,13 +428,13 @@ public class Scrape
 				radiant [i][9] = xpm;
 			}
 			tag = tag + next;
-		}//end of xpm loop		
+		}//end of xpm loop
 		return radiant;
-	}
+	}//end of radiantArray() method
 	
-	public String[][] direArray(ArrayList<Long> matchList, String matchURL) throws IOException
+	public String[][] direArray(String match_url) throws IOException
 	{		
-		String url = matchURL;
+		String url = match_url;
 		Document matchInfo = Jsoup.connect(url).get();
 		String [][] dire = new String [5][10];
 		
@@ -827,8 +828,8 @@ public class Scrape
 				dire [i][9] = xpm;
 			}
 		}//end of xpm loop
-		return dire;
-	}
+		return dire;		
+	}//end of direArray() method
 }
 
 

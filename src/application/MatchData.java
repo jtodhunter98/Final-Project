@@ -20,90 +20,90 @@ public class MatchData
 		this.xpm =new SimpleStringProperty(xpm);
 	}
 	
-	public SimpleStringProperty getHero()
+	public String getHero()
 	{
-		return hero;		
+		return hero.get();		
 	}
 	public void setHero(SimpleStringProperty hero)
 	{
 		this.hero = hero;
 	}
 	
-	public SimpleStringProperty getPlayer()
+	public String getPlayer()
 	{
-		return player;		
+		return player.get();	
 	}
 	public void setPlayer(SimpleStringProperty player)
 	{
 		this.player = player;
 	}
 	
-	public SimpleStringProperty getKills()
+	public String getKills()
 	{
-		return kills;		
+		return kills.get();		
 	}
 	public void setKills(SimpleStringProperty kills)
 	{
 		this.kills = kills;
 	}
 	
-	public SimpleStringProperty getDeaths()
+	public String getDeaths()
 	{
-		return deaths;		
+		return deaths.get();		
 	}
 	public void setDeaths(SimpleStringProperty deaths)
 	{
 		this.deaths = deaths;
 	}
 	
-	public SimpleStringProperty getAssists()
+	public String getAssists()
 	{
-		return assists;		
+		return assists.get();		
 	}
 	public void setAssists(SimpleStringProperty assists)
 	{
 		this.assists = assists;
 	}
 	
-	public SimpleStringProperty getNetWorth()
+	public String getNetWorth()
 	{
-		return netWorth;		
+		return netWorth.get();		
 	}
 	public void setNetWorth(SimpleStringProperty netWorth)
 	{
 		this.netWorth = netWorth;
 	}
 	
-	public SimpleStringProperty getLastHits()
+	public String getLastHits()
 	{
-		return lastHits;		
+		return lastHits.get();		
 	}
 	public void setLastHits(SimpleStringProperty lastHits)
 	{
 		this.lastHits = lastHits;
 	}
 	
-	public SimpleStringProperty getDenies()
+	public String getDenies()
 	{
-		return denies;		
+		return denies.get();		
 	}
 	public void setDenies(SimpleStringProperty denies)
 	{
 		this.denies = denies;
 	}
 	
-	public SimpleStringProperty getGPM()
+	public String getGPM()
 	{
-		return gpm;		
+		return gpm.get();	
 	}
 	public void setGPM(SimpleStringProperty gpm)
 	{
 		this.gpm = gpm;
 	}
 	
-	public SimpleStringProperty getXPM()
+	public String getXPM()
 	{
-		return xpm;		
+		return xpm.get();		
 	}
 	public void setXPM(SimpleStringProperty xpm)
 	{
