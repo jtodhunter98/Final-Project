@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 
 public class Scrape 
 {	
-	public String playerName(Document site) throws IOException
+	public String listHeader(Document site) throws IOException
 	{		
 		Elements playerElement = site.getElementsByClass("header-content-title").select("h1");
 		String player = playerElement.first().text();
@@ -22,11 +22,62 @@ public class Scrape
 		return header;
 	}
 	
+	public String playerName(Document site)
+	{
+		Elements playerElement = site.getElementsByClass("header-content-title").select("h1");
+		String player = playerElement.first().text();
+		int find = player.indexOf("M");
+		player = player.substring(0, find);
+		return player;
+	}
+	public String playerWins(String player_id) throws IOException
+	{
+		String url = "https://www.dotabuff.com/players/" + player_id;
+		Document site = Jsoup.connect(url).get();
+		Elements collectWins = site.getElementsByClass("wins");
+		String wins = collectWins.text();
+		String line = "Wins: " + wins;
+		return line;
+	}
+	
+	public String playerLosses(String player_id) throws IOException
+	{
+		String url = "https://www.dotabuff.com/players/" + player_id;
+		Document site = Jsoup.connect(url).get();
+		Elements collectLosses = site.getElementsByClass("losses");
+		String losses = collectLosses.text();
+		String line = "Losses: " + losses;
+		return line;
+	}
+	
+	public String playerWinRate(String player_id) throws IOException
+	{
+		String url = "https://www.dotabuff.com/players/" + player_id;
+		Document site = Jsoup.connect(url).get();
+		
+		int tag = 2;
+		Elements collectWinRate = site.getElementsByTag("dt");
+		Element winRateElement = collectWinRate.get(tag);
+		String winRate = winRateElement.text();
+		if(!winRate.equals("Win Rate"))
+		{
+			tag = 4;
+			winRateElement = collectWinRate.get(tag);
+			winRate = winRateElement.text();
+		}
+		collectWinRate = site.getElementsByTag("dd");
+		winRateElement = collectWinRate.get(tag);
+		winRate = winRateElement.text();
+		String line = "Win Rate: " + winRate;
+		return line;
+	}
+	
 	public ArrayList<String> displayMatches(Document site) throws IOException
 	{		
 		Elements playerElement = site.getElementsByClass("header-content-title").select("h1");
 		Elements heroElement = site.getElementsByClass("cell-large").select("a");
 		Elements findDate = site.getElementsByClass("subtext").select("time");
+		Elements collectOutcome = site.getElementsByTag("td").select("td");
 		
 		String player = playerElement.first().text();
 		int find = player.indexOf("M");
@@ -34,16 +85,21 @@ public class Scrape
 		
 		ArrayList<String> displayList = new ArrayList<String>(10);
 		//loop to display most recent matches
+		int tag = 9;
 		for(int i = 0; i < 10; i++)
 		{
 			String hero = heroElement.get(i).text();
 			Element dateElement = findDate.get(i);
+			Element outcomeElement = collectOutcome.get(tag);
 			String date = dateElement.toString();
 			int date1 = date.indexOf("title=") + 7;
 			int date2 = date.indexOf(" ", 65);		
 			date = date.substring(date1,date2);
-			String line = i+1 + ") " + hero + " (" + date + ")";			
+			String outcome = outcomeElement.text();
+			outcome = outcome.substring(0, outcome.indexOf(" "));
+			String line = i+1 + ") " + hero + " (" + date + ") - " + outcome;			
 			displayList.add(line);
+			tag = tag + 8;
 		}
 		return displayList;
 	}

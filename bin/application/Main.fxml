@@ -34,7 +34,7 @@
       <Label layoutX="36.0" layoutY="241.0" text="1." textFill="#ed0202" />
       <Label fx:id="displayUser" layoutX="68.0" layoutY="278.0" prefHeight="35.0" prefWidth="412.0" textFill="#160db7">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="matchField" layoutX="64.0" layoutY="799.0" onAction="#selectMatch" prefHeight="25.0" prefWidth="66.0" promptText="1-10" />
@@ -61,7 +61,7 @@
          </font>
       </Label>
       <Label layoutX="1137.0" layoutY="803.0" text="3." textFill="#ed0202" />
-      <TableView fx:id="matchTable" layoutX="769.0" layoutY="142.0" prefHeight="322.0" prefWidth="707.0">
+      <TableView fx:id="radiantTable" layoutX="760.0" layoutY="350.0" prefHeight="177.0" prefWidth="707.0">
         <columns>
           <TableColumn fx:id="heroColumn" prefWidth="180.0" text="Hero" />
           <TableColumn fx:id="playerColumn" prefWidth="200.0" text="Player" />
@@ -75,5 +75,55 @@
             <TableColumn prefWidth="50.0" text="XPM" fx:id="xpmColumn" />
         </columns>
       </TableView>
+      <Label fx:id="winsLabel" layoutX="1085.0" layoutY="125.0" prefHeight="27.0" prefWidth="110.0" textFill="#03a714">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lossesLabel" layoutX="1187.0" layoutY="125.0" prefHeight="27.0" prefWidth="110.0" textFill="#a70505">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="winRateLabel" layoutX="1310.0" layoutY="125.0" prefHeight="27.0" prefWidth="150.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="playerLabel" layoutX="760.0" layoutY="119.0" prefHeight="41.0" prefWidth="329.0">
+         <font>
+            <Font name="Calibri Bold Italic" size="36.0" />
+         </font>
+      </Label>
+      <TableView fx:id="direTable" layoutX="760.0" layoutY="561.0" prefHeight="177.0" prefWidth="707.0">
+         <columns>
+            <TableColumn fx:id="direHeroColumn" prefWidth="180.0" text="Hero" />
+            <TableColumn fx:id="direPlayerColumn" prefWidth="200.0" text="Player" />
+            <TableColumn fx:id="direKillsColumn" minWidth="0.0" prefWidth="25.0" text="K" />
+            <TableColumn fx:id="direDeathsColumn" minWidth="7.199951171875" prefWidth="25.0" text="D" />
+            <TableColumn fx:id="direAssistsColumn" prefWidth="25.0" text="A" />
+            <TableColumn fx:id="direNetWorthColumn" prefWidth="50.0" text="NET" />
+            <TableColumn fx:id="direLastHitsColumn" prefWidth="50.0" text="LH" />
+            <TableColumn fx:id="direDeniesColumn" prefWidth="50.0" text="DN" />
+            <TableColumn fx:id="dire_gpmColumn" prefWidth="50.0" text="GPM" />
+            <TableColumn fx:id="dire_xpmColumn" prefWidth="50.0" text="XPM" />
+         </columns>
+      </TableView>
+      <Label layoutX="1101.0" layoutY="318.0" text="Radiant" textFill="#13a700">
+         <font>
+            <Font name="Calibri Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1115.0" layoutY="531.0" text="Dire" textFill="#970202">
+         <font>
+            <Font name="Calibri Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="36.0" prefHeight="68.0" prefWidth="459.0" text="Dota 2 Stats">
+         <font>
+            <Font name="Engravers MT" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="saveSuccessfulLabel" layoutX="1344.0" layoutY="835.0" prefHeight="17.0" prefWidth="110.0" textFill="#028c19" />
    </children>
 </Pane>

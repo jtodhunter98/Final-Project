@@ -23,13 +23,25 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class Controller
 {
 	@FXML
-    private TextField idField;	
+    private TextField idField;
 	
 	@FXML
     private Label label1;
 	
 	@FXML
     private TextField txtField;
+	
+	@FXML
+    private Label playerLabel;
+	
+	@FXML
+    private Label winsLabel;
+
+    @FXML
+    private Label lossesLabel;
+
+    @FXML
+    private Label winRateLabel;
 	
 	@FXML
 	private Label displayUser;
@@ -70,28 +82,51 @@ public class Controller
 	@FXML
     private TextField titleField;
 	
-	@FXML private TableView<MatchData> matchTable;
-	@FXML private TableColumn<MatchData, String> heroColumn;
-	@FXML private TableColumn<MatchData, String> playerColumn;
-	@FXML private TableColumn<MatchData, String> killsColumn;
-	@FXML private TableColumn<MatchData, String> deathsColumn;
-	@FXML private TableColumn<MatchData, String> assistsColumn;
-	@FXML private TableColumn<MatchData, String> netWorthColumn;
-	@FXML private TableColumn<MatchData, String> lastHitsColumn;
-	@FXML private TableColumn<MatchData, String> deniesColumn;
-	@FXML private TableColumn<MatchData, String> gpmColumn;
-	@FXML private TableColumn<MatchData, String> xpmColumn;
+	@FXML
+	private Label saveSuccessfulLabel;
+	
+	@FXML private TableView<Radiant> radiantTable;
+	@FXML private TableColumn<Radiant, String> heroColumn;
+	@FXML private TableColumn<Radiant, String> playerColumn;
+	@FXML private TableColumn<Radiant, String> killsColumn;
+	@FXML private TableColumn<Radiant, String> deathsColumn;
+	@FXML private TableColumn<Radiant, String> assistsColumn;
+	@FXML private TableColumn<Radiant, String> netWorthColumn;
+	@FXML private TableColumn<Radiant, String> lastHitsColumn;
+	@FXML private TableColumn<Radiant, String> deniesColumn;
+	@FXML private TableColumn<Radiant, String> gpmColumn;
+	@FXML private TableColumn<Radiant, String> xpmColumn;
+	
+	@FXML private TableView<Dire> direTable;
+	@FXML private TableColumn<Dire, String> direHeroColumn;
+	@FXML private TableColumn<Dire, String> direPlayerColumn;
+	@FXML private TableColumn<Dire, String> direKillsColumn;
+	@FXML private TableColumn<Dire, String> direDeathsColumn;
+	@FXML private TableColumn<Dire, String> direAssistsColumn;
+	@FXML private TableColumn<Dire, String> direNetWorthColumn;
+	@FXML private TableColumn<Dire, String> direLastHitsColumn;
+	@FXML private TableColumn<Dire, String> direDeniesColumn;
+	@FXML private TableColumn<Dire, String> dire_gpmColumn;
+	@FXML private TableColumn<Dire, String> dire_xpmColumn;
 	
 	//triggers when the user pastes an ID into the first text field
 	@FXML
 	public String enterID() throws IOException
 	{
 		Scrape scrape = new Scrape();
-		String id = idField.getText();
-		String player_url = "https://www.dotabuff.com/players/"+id+"/matches";
+		String player_id = idField.getText();
+		String player_url = "https://www.dotabuff.com/players/"+player_id+"/matches";
 		Document site = Jsoup.connect(player_url).get();
-		String displayPlayer = scrape.playerName(site);
+		String player = scrape.playerName(site);
+		String wins = scrape.playerWins(player_id);
+		String losses = scrape.playerLosses(player_id);
+		String winRate = scrape.playerWinRate(player_id);
+		String displayPlayer = scrape.listHeader(site);
 		ArrayList<String> displayList = scrape.displayMatches(site);
+		playerLabel.setText(player);
+		winsLabel.setText(wins);
+		lossesLabel.setText(losses);
+		winRateLabel.setText(winRate);
 		displayUser.setText(displayPlayer);
 		match0.setText(displayList.get(0));
 		match1.setText(displayList.get(1));
@@ -119,56 +154,71 @@ public class Controller
 		String matchID = Long.toString(selection);
 		String match_url = "https://www.dotabuff.com/matches/"+matchID;
 		
-		String [][] matchArray = new String [10][10];
 		String [][] radiant = scrape.radiantArray(match_url);
-		String [][] dire = scrape.direArray(match_url);
+		String [][] dire = scrape.direArray(match_url);		
 		
-		//loop to create 2d array that contains both teams' info
-		for(int c = 0; c < 10; c++)
-		{
-			for(int r = 0; r < 10; r++)
-			{
-				if(r < 5)
-				{
-					matchArray[r][c] = radiant[r][c];					
-				}
-				else
-				{
-					matchArray[r][c] = dire[r-5][c];				
-				}
-			}
-		}
+		heroColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("hero"));
+		playerColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("player"));
+		killsColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("kills"));
+		deathsColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("deaths"));
+		assistsColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("assists"));
+		netWorthColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("netWorth"));
+		lastHitsColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("lastHits"));
+		deniesColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("denies"));
+		gpmColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("GPM"));
+		xpmColumn.setCellValueFactory(new PropertyValueFactory<Radiant, String>("XPM"));
 		
-		heroColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("hero"));
-		playerColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("player"));
-		killsColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("kills"));
-		deathsColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("deaths"));
-		assistsColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("assists"));
-		netWorthColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("netWorth"));
-		lastHitsColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("lastHits"));
-		deniesColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("denies"));
-		gpmColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("gpm"));
-		xpmColumn.setCellValueFactory(new PropertyValueFactory<MatchData, String>("xpm"));
-		
-		ObservableList<MatchData> data = FXCollections.observableArrayList();
+		ObservableList<Radiant> radiantData = FXCollections.observableArrayList();
 		String hero, player, kills, deaths, assists, netWorth, lastHits, denies, gpm, xpm;
-		for(int r = 0; r < 10; r++)
+		for(int r = 0; r < 5; r++)
 		{
-			hero = matchArray[r][0];
-			player = matchArray[r][1];
-			kills = matchArray[r][2];
-			deaths = matchArray[r][3];
-			assists = matchArray[r][4];
-			netWorth = matchArray[r][5];
-			lastHits = matchArray[r][6];
-			denies = matchArray[r][7];
-			gpm = matchArray[r][8];
-			xpm = matchArray[r][9];
+			hero = radiant[r][0];
+			player = radiant[r][1];
+			kills = radiant[r][2];
+			deaths = radiant[r][3];
+			assists = radiant[r][4];
+			netWorth = radiant[r][5];
+			lastHits = radiant[r][6];
+			denies = radiant[r][7];
+			gpm = radiant[r][8];
+			xpm = radiant[r][9];
 			
-			data.add(new MatchData(hero,player,kills,deaths,assists,netWorth,lastHits,denies, gpm, xpm));
+			radiantData.add(new Radiant(hero,player,kills,deaths,assists,netWorth,lastHits,denies, gpm, xpm));
 		}
 		
-		matchTable.setItems(data);
+		radiantTable.setItems(radiantData);
+		
+		
+		direHeroColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("hero"));
+		direPlayerColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("player"));
+		direKillsColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("kills"));
+		direDeathsColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("deaths"));
+		direAssistsColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("assists"));
+		direNetWorthColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("netWorth"));
+		direLastHitsColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("lastHits"));
+		direDeniesColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("denies"));
+		dire_gpmColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("GPM"));
+		dire_xpmColumn.setCellValueFactory(new PropertyValueFactory<Dire, String>("XPM"));
+		
+		ObservableList<Dire> direData = FXCollections.observableArrayList();
+		String direHero, direPlayer, direKills, direDeaths, direAssists, direNetWorth, direLastHits, direDenies, dire_gpm, dire_xpm;
+		for(int r = 0; r < 5; r++)
+		{
+			direHero = dire[r][0];
+			direPlayer = dire[r][1];
+			direKills = dire[r][2];
+			direDeaths = dire[r][3];
+			direAssists = dire[r][4];
+			direNetWorth = dire[r][5];
+			direLastHits = dire[r][6];
+			direDenies = dire[r][7];
+			dire_gpm = dire[r][8];
+			dire_xpm = dire[r][9];
+			
+			direData.add(new Dire(direHero,direPlayer,direKills,direDeaths,direAssists,direNetWorth,direLastHits,direDenies, dire_gpm, dire_xpm));
+		}
+		
+		direTable.setItems(direData);
 		return match_url;
 	}
 	
@@ -180,7 +230,7 @@ public class Controller
 		Save database = new Save();
 		String title = titleField.getText();
 		database.create(title, matchArray);
-		System.out.println(title);
+		saveSuccessfulLabel.setText("Save successful");
 	}	
 	
 	public String[][] getMatchArray() throws IOException, SQLException

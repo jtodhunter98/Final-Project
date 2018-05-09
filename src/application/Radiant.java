@@ -2,11 +2,11 @@ package application;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class MatchData 
+public class Radiant 
 {
-	private SimpleStringProperty hero, player, kills, deaths, assists, netWorth, lastHits, denies, gpm, xpm;
+	private SimpleStringProperty hero, player, kills, deaths, assists, netWorth, lastHits, denies, GPM, XPM;
 	
-	public MatchData(String hero, String player, String kills, String deaths, String assists, String netWorth, String lastHits, String denies, String gpm, String xpm)
+	public Radiant(String hero, String player, String kills, String deaths, String assists, String netWorth, String lastHits, String denies, String gpm, String xpm)
 	{
 		this.hero = new SimpleStringProperty(hero);
 		this.player = new SimpleStringProperty(player);
@@ -16,8 +16,8 @@ public class MatchData
 		this.netWorth = new SimpleStringProperty(netWorth);
 		this.lastHits = new SimpleStringProperty(lastHits);
 		this.denies = new SimpleStringProperty(denies);
-		this.gpm = new SimpleStringProperty(gpm);
-		this.xpm =new SimpleStringProperty(xpm);
+		this.GPM = new SimpleStringProperty(gpm);
+		this.XPM =new SimpleStringProperty(xpm);
 	}
 	
 	public String getHero()
@@ -94,19 +94,19 @@ public class MatchData
 	
 	public String getGPM()
 	{
-		return gpm.get();	
+		return GPM.get();	
 	}
 	public void setGPM(SimpleStringProperty gpm)
 	{
-		this.gpm = gpm;
+		this.GPM = gpm;
 	}
 	
 	public String getXPM()
 	{
-		return xpm.get();		
+		return XPM.get();		
 	}
 	public void setXPM(SimpleStringProperty xpm)
 	{
-		this.xpm = xpm;
+		this.XPM = xpm;
 	}
 }
