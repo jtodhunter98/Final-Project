@@ -4,9 +4,9 @@
 -Click on the player you want to enter into the program
 -In the url, there will be a url that looks like this:
 
-https://www.dotabuff.com/players/<PLAYER ID HERE>
+https://www.dotabuff.com/players/(PLAYER ID HERE)
 
--<PLAYER ID HERE> is what you want to paste into the first box of the program
+-(PLAYER ID HERE) is what you want to paste into the first box of the program
 
 -Here are some player IDs that I used for testing:
 151912302
