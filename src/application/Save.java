@@ -6,8 +6,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * The Save class holds the create(String, String[][]) method, which will connect to the
+ * database, and store the match information into the database.
+ * @author todjord
+ *
+ */
 public class Save 
 {	
+	/**
+	 * This method is used for connecting to the database with the correct information and
+	 * creating a new table.
+	 * @database is the database that the program will connect to.
+	 * @param title is passed in from the saveMatch() method in the Controller class. This is what the
+	 * table will be named in the database.
+	 * @param matchTable  is passed in from saveMatch() in Controller class. This array contains all of the match information
+	 * that will be entered into the table in the database
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	public void create(String title, String[][] matchTable) throws SQLException, IOException
 	{
 		String DB_URL = "jdbc:mysql://db4free.net:3306/match_data";
@@ -31,7 +48,6 @@ public class Save
                      	" XPM VARCHAR(255)," +
                      	" PRIMARY KEY ( Num ))";
         stmt.executeUpdate(create);
-        System.out.println("Created table in given database");
         
         //Add data to the table
         int row = 0;

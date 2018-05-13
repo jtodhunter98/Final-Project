@@ -10,8 +10,23 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+/**
+ * The Scrape class is dedicated to connecting to dotabuff.com and retrieving
+ * the correct information so it can be displayed in the GUI.
+ * @author todjord
+ *
+ */
 public class Scrape 
 {	
+	/**
+	 * This method will find the user name of the player that corresponds with the player ID
+	 * that has been entered by the user in the GUI.
+	 * @param site is passed in from the enterID() method in the Controller class. It is used to connect
+	 * to the URL that holds the player name.
+	 * @return Returns a string that will be assigned to a label object in the Controller class
+	 * to display the text that is returned here.
+	 * @throws IOException
+	 */
 	public String listHeader(Document site) throws IOException
 	{		
 		Elements playerElement = site.getElementsByClass("header-content-title").select("h1");
@@ -20,8 +35,13 @@ public class Scrape
 		player = player.substring(0, find);
 		String header = "Most recent 10 matches for " + player;
 		return header;
-	}
-	
+	}//end of listHeader method
+	/**
+	 * This method is almost an exact duplicate of the listHeader(Document) method, except it
+	 * returns specifically the player's name alone, and nothing else in the string.
+	 * @param site is passed from the enterID() method.
+	 * @return Returns the player's name as a string to be assigned to a label in the Controller class.
+	 */
 	public String playerName(Document site)
 	{
 		Elements playerElement = site.getElementsByClass("header-content-title").select("h1");
@@ -29,7 +49,13 @@ public class Scrape
 		int find = player.indexOf("M");
 		player = player.substring(0, find);
 		return player;
-	}
+	}//end of playerName method
+	/**
+	 * Will connect to the URL and find the player's total wins.
+	 * @param player_id is passed from the enterID() method so it can connect to the correct URL.
+	 * @return Returns a string that will be set to the winsLabel object in the Controller class.
+	 * @throws IOException
+	 */
 	public String playerWins(String player_id) throws IOException
 	{
 		String url = "https://www.dotabuff.com/players/" + player_id;
@@ -40,6 +66,12 @@ public class Scrape
 		return line;
 	}
 	
+	/**
+	 * Will connect to the URL and find the player's total losses.
+	 * @param player_id passed from the enterID() method so it can connect to the correct URL.
+	 * @return Returns a string that will be set to the lossesLabel object in the Controller class.
+	 * @throws IOException
+	 */
 	public String playerLosses(String player_id) throws IOException
 	{
 		String url = "https://www.dotabuff.com/players/" + player_id;
@@ -49,7 +81,12 @@ public class Scrape
 		String line = "Losses: " + losses;
 		return line;
 	}
-	
+	/**
+	 * Will connect to the URL and find the player's win rate.
+	 * @param player_id passed from the enterID() method so it can connect to the correct URL.
+	 * @return Returns a string that will be set to the winRateLabel object in the Controller class.
+	 * @throws IOException
+	 */
 	public String playerWinRate(String player_id) throws IOException
 	{
 		String url = "https://www.dotabuff.com/players/" + player_id;
@@ -71,7 +108,107 @@ public class Scrape
 		String line = "Win Rate: " + winRate;
 		return line;
 	}
+	/**
+	 * Used to return a string to display player rank in the GUI
+	 * @param player_id
+	 * @return Returns the player's rank in a string
+	 * @throws IOException
+	 */
+	public String playerRank(String player_id) throws IOException
+	{
+		String url = "https://www.dotabuff.com/players/" + player_id;
+		Document site = Jsoup.connect(url).get();
+		Elements collectRank = site.getElementsByClass("rank-tier-wrapper");		
+		String rank = collectRank.toString();
+		int find1 = rank.indexOf('"', 50) + 1;
+		int find2 = rank.indexOf('"', 52);		
+		rank = rank.substring(find1, find2);
+		return rank;
+	}
 	
+	/**
+	 * Used to return a string to display the most played hero in the GUI
+	 * @param player_id
+	 * @return Returns the hero name in a string
+	 * @throws IOException
+	 */
+	public String firstHero(String player_id) throws IOException
+	{
+		String url = "https://www.dotabuff.com/players/" + player_id;
+		Document site = Jsoup.connect(url).get();
+		Elements elements = site.getElementsByClass("r-none-mobile").select("a");
+		Element element = elements.get(0);
+		String hero = element.text();
+		
+		Elements elements1 = site.getElementsByClass("r-body");
+		Element element1 = elements1.get(1);
+		String wins = element1.text();
+		
+		Elements elements2 = site.getElementsByClass("r-body");
+		Element element2 = elements2.get(2);
+		String winRate = element2.text();
+		String line = hero + " (Wins: " + wins + ", Win Rate: " + winRate + ")";
+		return line;
+	}
+	
+	/**
+	 * Used to return a string to display the second most played hero in the GUI
+	 * @param player_id
+	 * @return Returns the hero name in a string
+	 * @throws IOException
+	 */
+	public String secondHero(String player_id) throws IOException
+	{
+		String url = "https://www.dotabuff.com/players/" + player_id;
+		Document site = Jsoup.connect(url).get();
+		Elements elements = site.getElementsByClass("r-none-mobile").select("a");
+		Element element = elements.get(2);
+		String hero = element.text();
+		
+		Elements elements1 = site.getElementsByClass("r-body");
+		Element element1 = elements1.get(7);
+		String wins = element1.text();
+		
+		Elements elements2 = site.getElementsByClass("r-body");
+		Element element2 = elements2.get(8);
+		String winRate = element2.text();
+		String line = hero + " (Wins: " + wins + ", Win Rate: " + winRate + ")";
+		return line;
+	}
+	
+	/**
+	 * Used to return a string to display the third most played hero in the GUI
+	 * @param player_id
+	 * @return Returns the hero name in a string
+	 * @throws IOException
+	 */
+	public String thirdHero(String player_id) throws IOException
+	{
+		String url = "https://www.dotabuff.com/players/" + player_id;
+		Document site = Jsoup.connect(url).get();
+		Elements elements = site.getElementsByClass("r-none-mobile").select("a");
+		Element element = elements.get(4);
+		String hero = element.text();
+		
+		Elements elements1 = site.getElementsByClass("r-body");
+		Element element1 = elements1.get(13);
+		String wins = element1.text();
+		
+		Elements elements2 = site.getElementsByClass("r-body");
+		Element element2 = elements2.get(14);
+		String winRate = element2.text();
+		String line = hero + " (Wins: " + wins + ", Win Rate: " + winRate + ")";
+		return line;
+	}
+	
+	/**
+	 * Used to create a list of the most recent 10 matches for the player so it can later be
+	 * displayed in the GUI.
+	 * @param site is passed in to get the correct URL to connect to.
+	 * @return Returns an ArrayList that will contain the past 10 matches and their outcomes,
+	 * which will later be displayed on multiple labels in the GUI.
+	 * @throws IOException
+	 */
 	public ArrayList<String> displayMatches(Document site) throws IOException
 	{		
 		Elements playerElement = site.getElementsByClass("header-content-title").select("h1");
@@ -103,7 +240,14 @@ public class Scrape
 		}
 		return displayList;
 	}
-	
+	/**
+	 * Creates a list of the match IDs, which are needed in the URL to point the web site to
+	 * a specific match, which will later be displayed in the GUI's table.
+	 * @param site is passed in to get the correct URL to connect to.
+	 * @return Returns an ArrayList of the most recent 10 matches' ID numbers, which will be selected
+	 * from in the selectMatch() method from the Controller class.
+	 * @throws IOException
+	 */
 	public ArrayList<Long> collectMatches(Document site) throws IOException
 	{		
 		//collect match IDs
@@ -146,6 +290,15 @@ public class Scrape
 		return matchIDs;
 	}
 	
+	/**
+	 * Connects to the URL and creates a multidimensional array that holds all of the information from the
+	 * radiant team.
+	 * @param match_url is passed from the selectMatch() method in the Controller class, so it
+	 * can connect to the match's URL.
+	 * @return Returns a multidimensional array that contains the radiant team's info, such as player
+	 * names, hero names, and their in game statistics
+	 * @throws IOException
+	 */
 	public String[][] radiantArray(String match_url) throws IOException
 	{
 		String url = match_url;
@@ -487,7 +640,15 @@ public class Scrape
 		}//end of xpm loop
 		return radiant;
 	}//end of radiantArray() method
-	
+	/**
+	 * Connects to the URL and creates a multidimensional array that holds all of the information from the
+	 * dire team.
+	 * match_url is passed from the selectMatch() method in the Controller class, so it
+	 * can connect to the match's URL.
+	 * @return Returns a multidimensional array that contains the dire team's info, such as player
+	 * names, hero names, and their in game statistics
+	 * @throws IOException
+	 */
 	public String[][] direArray(String match_url) throws IOException
 	{		
 		String url = match_url;

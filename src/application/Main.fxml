@@ -47,7 +47,7 @@
       <Label layoutX="52.0" layoutY="154.0" prefHeight="17.0" prefWidth="412.0" text="Copy and paste the player ID from a profile." />
       <Label layoutX="52.0" layoutY="171.0" prefHeight="17.0" prefWidth="412.0" text="Example: https://www.dotabuff.com/players/&lt;PLAYER ID&gt;" />
       <Label layoutX="52.0" layoutY="137.0" prefHeight="17.0" prefWidth="412.0" text="Search for a player on dotabuff.com." />
-      <Button layoutX="189.0" layoutY="799.0" mnemonicParsing="false" onAction="#selectMatch" text="Select Match" />
+      <Button layoutX="162.0" layoutY="799.0" mnemonicParsing="false" onAction="#selectMatch" text="Select Match" />
       <Button layoutX="1389.0" layoutY="799.0" mnemonicParsing="false" onAction="#saveMatch" text="Save" />
       <TextField fx:id="titleField" layoutX="1185.0" layoutY="799.0" prefHeight="25.0" prefWidth="112.0" promptText="Enter Title" />
       <Label layoutX="1131.0" layoutY="740.0" prefHeight="42.0" prefWidth="355.0" text="Enter a table name and click &quot;Save&quot; to " textFill="#ed0202">
@@ -61,41 +61,41 @@
          </font>
       </Label>
       <Label layoutX="1137.0" layoutY="803.0" text="3." textFill="#ed0202" />
-      <TableView fx:id="radiantTable" layoutX="760.0" layoutY="350.0" prefHeight="177.0" prefWidth="707.0">
+      <TableView fx:id="radiantTable" layoutX="760.0" layoutY="350.0" prefHeight="177.0" prefWidth="710.0">
         <columns>
-          <TableColumn fx:id="heroColumn" prefWidth="180.0" text="Hero" />
-          <TableColumn fx:id="playerColumn" prefWidth="200.0" text="Player" />
-            <TableColumn fx:id="killsColumn" minWidth="0.0" prefWidth="25.0" text="K" />
-            <TableColumn fx:id="deathsColumn" minWidth="7.199951171875" prefWidth="25.0" text="D" />
-            <TableColumn fx:id="assistsColumn" prefWidth="25.0" text="A" />
-            <TableColumn fx:id="netWorthColumn" prefWidth="50.0" text="NET" />
-            <TableColumn fx:id="lastHitsColumn" prefWidth="50.0" text="LH" />
-            <TableColumn fx:id="deniesColumn" prefWidth="50.0" text="DN" />
-            <TableColumn fx:id="gpmColumn" prefWidth="50.0" text="GPM" />
-            <TableColumn prefWidth="50.0" text="XPM" fx:id="xpmColumn" />
+          <TableColumn fx:id="radiantHeroColumn" prefWidth="180.0" text="Hero" />
+          <TableColumn fx:id="radiantPlayerColumn" prefWidth="200.0" text="Player" />
+            <TableColumn fx:id="radiantKillsColumn" minWidth="0.0" prefWidth="25.0" text="K" />
+            <TableColumn fx:id="radiantDeathsColumn" minWidth="7.199951171875" prefWidth="25.0" text="D" />
+            <TableColumn fx:id="radiantAssistsColumn" prefWidth="25.0" text="A" />
+            <TableColumn fx:id="radiantNetWorthColumn" prefWidth="50.0" text="NET" />
+            <TableColumn fx:id="radiantLastHitsColumn" prefWidth="50.0" text="LH" />
+            <TableColumn fx:id="radiantDeniesColumn" prefWidth="50.0" text="DN" />
+            <TableColumn fx:id="radiant_gpmColumn" prefWidth="50.0" text="GPM" />
+            <TableColumn fx:id="radiant_xpmColumn" prefWidth="50.0" text="XPM" />
         </columns>
       </TableView>
-      <Label fx:id="winsLabel" layoutX="1085.0" layoutY="125.0" prefHeight="27.0" prefWidth="110.0" textFill="#03a714">
+      <Label fx:id="winsLabel" layoutX="1089.0" layoutY="56.0" prefHeight="27.0" prefWidth="110.0" textFill="#03a714">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lossesLabel" layoutX="1187.0" layoutY="125.0" prefHeight="27.0" prefWidth="110.0" textFill="#a70505">
+      <Label fx:id="lossesLabel" layoutX="1199.0" layoutY="56.0" prefHeight="27.0" prefWidth="110.0" textFill="#a70505">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="winRateLabel" layoutX="1310.0" layoutY="125.0" prefHeight="27.0" prefWidth="150.0">
+      <Label fx:id="winRateLabel" layoutX="1319.0" layoutY="56.0" prefHeight="27.0" prefWidth="145.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="playerLabel" layoutX="760.0" layoutY="119.0" prefHeight="41.0" prefWidth="329.0">
+      <Label fx:id="playerLabel" layoutX="764.0" layoutY="50.0" prefHeight="41.0" prefWidth="329.0">
          <font>
             <Font name="Calibri Bold Italic" size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="direTable" layoutX="760.0" layoutY="561.0" prefHeight="177.0" prefWidth="707.0">
+      <TableView fx:id="direTable" layoutX="760.0" layoutY="561.0" prefHeight="177.0" prefWidth="710.0">
          <columns>
             <TableColumn fx:id="direHeroColumn" prefWidth="180.0" text="Hero" />
             <TableColumn fx:id="direPlayerColumn" prefWidth="200.0" text="Player" />
@@ -125,5 +125,30 @@
          </font>
       </Label>
       <Label fx:id="saveSuccessfulLabel" layoutX="1344.0" layoutY="835.0" prefHeight="17.0" prefWidth="110.0" textFill="#028c19" />
+      <Label fx:id="rankLabel" layoutX="766.0" layoutY="98.0" prefHeight="27.0" prefWidth="319.0" textFill="#e2bd04">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="playedHeroesLabel" layoutX="766.0" layoutY="133.0" prefHeight="27.0" prefWidth="355.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="firstHeroLabel" layoutX="766.0" layoutY="163.0" prefHeight="27.0" prefWidth="707.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="secondHeroLabel" layoutX="766.0" layoutY="190.0" prefHeight="27.0" prefWidth="707.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="thirdHeroLabel" layoutX="766.0" layoutY="217.0" prefHeight="27.0" prefWidth="707.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

@@ -1,7 +1,12 @@
 package application;
 
 import javafx.beans.property.SimpleStringProperty;
-
+/**
+ * This class is for constructing the table that contains the Dire team's information, such as player names, and statistics
+ * that have been recorded in the specified match in-game.
+ * @author todjord
+ *
+ */
 public class Dire 
 {
 	private SimpleStringProperty hero, player, kills, deaths, assists, netWorth, lastHits, denies, GPM, XPM;
